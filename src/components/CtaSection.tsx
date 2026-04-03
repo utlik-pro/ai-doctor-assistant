@@ -13,7 +13,7 @@ const CtaSection = () => {
             size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-12 py-6 rounded-full box-glow transition-all duration-300 hover:scale-105"
           >
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://t.me/PRO_sebya_medbot" target="_blank" rel="noopener noreferrer">
               Регистрация по ссылке
             </a>
           </Button>
