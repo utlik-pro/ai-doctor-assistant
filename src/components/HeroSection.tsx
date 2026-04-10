@@ -24,8 +24,12 @@ const HeroSection = () => {
           ИИ-ассистент врача
         </h1>
 
-        <p className="text-lg md:text-xl text-cyan-light max-w-2xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+        <p className="text-lg md:text-xl text-cyan-light max-w-2xl mx-auto mb-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           Как нейросети помогают врачу экономить время и повышать качество работы
+        </p>
+
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: '0.38s' }}>
+          За один вечер вы освоите 6 AI-инструментов, которые сокращают рутину на 2 часа в день — живое демо на реальном кейсе пациента
         </p>
 
         <div className="inline-flex items-center gap-4 bg-primary/20 border border-primary/40 rounded-full px-8 py-3 text-foreground font-semibold text-lg mb-6 animate-fade-in-up box-glow" style={{ animationDelay: '0.45s' }}>

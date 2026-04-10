@@ -6,7 +6,6 @@ const EventHeader = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold text-foreground">PRO себя</span>
-          <span className="text-sm text-muted-foreground hidden sm:inline">искусство быть собой</span>
         </div>
         <div className="flex items-center gap-3 text-sm text-muted-foreground">
           <span className="hidden sm:inline">Партнёры:</span>
