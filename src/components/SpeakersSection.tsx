@@ -8,12 +8,14 @@ const speakers = [
     name: "Паневина Елена",
     role: "Founder EVEREST MARKETING & PRO себя",
     description: "Маркетинг менеджер, CEO проекта PRO себя",
+    about: "Откроет вечер обзором: как ИИ уже сегодня меняет медицину в Беларуси, России, Европе, США и Китае. Увидите, что технологии, которые кажутся невозможными — уже работают в реальных клиниках.",
     image: speakerPanevina,
   },
   {
     name: "Утлик Дмитрий",
     role: "AI Expert",
     description: "Фаундер и CEO в Utlik.Co | AI Expert | Глава M.AI.N — AI Community | Директор по инновациям AI разработки в группе компаний Белхард",
+    about: "Проведёт живое демо: покажет, как конкретные инструменты — ChatGPT, NotebookLM, AI-транскрибатор — сокращают рутину на реальном приёме пациента. Без теории. Только практика и цифры.",
     image: speakerUtlik,
   },
   {
@@ -26,6 +28,7 @@ const speakers = [
     name: "Звонцов Александр",
     role: "Юрист",
     description: "Юрист корпоративного права, компания Alba llp",
+    about: "Разберёт юридическую сторону вопроса, которую нельзя игнорировать: ответственность врача, обезличивание данных, согласие на обработку и нормативная база РБ.",
     image: speakerZvontsov,
   },
 ];
@@ -38,10 +41,10 @@ const SpeakersSection = () => {
           Спикеры
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {speakers.map((speaker, i) => (
-            <div key={i} className="flex flex-col items-center text-center group">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-primary/40 mb-4 box-glow transition-all duration-300 group-hover:border-primary/80 group-hover:scale-105">
+            <div key={i} className="flex gap-5 p-5 rounded-xl border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:box-glow group">
+              <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-primary/40 flex-shrink-0 box-glow transition-all duration-300 group-hover:border-primary/80">
                 {speaker.image ? (
                   <img
                     src={speaker.image}
@@ -57,9 +60,14 @@ const SpeakersSection = () => {
                   </div>
                 )}
               </div>
-              <h3 className="font-bold text-foreground text-sm md:text-base mb-1">{speaker.name}</h3>
-              <p className="text-primary text-xs md:text-sm font-medium mb-2">{speaker.role}</p>
-              <p className="text-muted-foreground text-xs leading-relaxed max-w-[200px]">{speaker.description}</p>
+              <div className="flex flex-col">
+                <h3 className="font-bold text-foreground text-base mb-1">{speaker.name}</h3>
+                <p className="text-primary text-xs md:text-sm font-medium mb-1">{speaker.role}</p>
+                <p className="text-muted-foreground text-xs leading-relaxed mb-2">{speaker.description}</p>
+                {speaker.about && (
+                  <p className="text-cyan-light text-xs leading-relaxed">{speaker.about}</p>
+                )}
+              </div>
             </div>
           ))}
         </div>
