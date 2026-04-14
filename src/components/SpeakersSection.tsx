@@ -2,6 +2,7 @@ import { HelpCircle } from "lucide-react";
 import speakerPanevina from "@/assets/speaker-panevina.jpg";
 import speakerUtlik from "@/assets/speaker-utlik.jpg";
 import speakerZvontsov from "@/assets/speaker-zvontsov.jpg";
+import speakerKabaeva from "@/assets/speaker-kabaeva.png";
 
 const speakers = [
   {
@@ -19,10 +20,10 @@ const speakers = [
     image: speakerUtlik,
   },
   {
-    name: "Секретный спикер",
-    role: "Доктор",
-    description: "Доктор",
-    image: null,
+    name: "Кабаева Екатерина Николаевна",
+    role: "Врач-гематолог, к.м.н., доцент",
+    description: "Врач-гематолог высшей квалификационной категории, кандидат медицинских наук, доцент, руководитель Республиканского центра патологии гемостаза, главный внештатный гемостазиолог Минздрава Республики Беларусь. Член Белорусской ассоциации врачей (БАВ) и Европейской гематологической ассоциации (EHA).",
+    image: speakerKabaeva,
   },
   {
     name: "Звонцов Александр",
