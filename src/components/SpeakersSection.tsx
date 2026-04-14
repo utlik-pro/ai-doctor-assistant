@@ -53,7 +53,7 @@ const SpeakersSection = () => {
                     loading="lazy"
                     width={512}
                     height={512}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 ) : (
                   <div className="w-full h-full bg-secondary flex items-center justify-center">
