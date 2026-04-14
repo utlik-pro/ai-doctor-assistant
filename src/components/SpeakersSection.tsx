@@ -24,6 +24,7 @@ const speakers = [
     role: "Врач-гематолог, к.м.н., доцент",
     description: "Врач-гематолог высшей квалификационной категории, кандидат медицинских наук, доцент, руководитель Республиканского центра патологии гемостаза, главный внештатный гемостазиолог Минздрава Республики Беларусь. Член Белорусской ассоциации врачей (БАВ) и Европейской гематологической ассоциации (EHA).",
     image: speakerKabaeva,
+    imageClassName: "object-contain object-top bg-secondary",
   },
   {
     name: "Звонцов Александр",
@@ -53,7 +54,7 @@ const SpeakersSection = () => {
                     loading="lazy"
                     width={512}
                     height={512}
-                    className="w-full h-full object-cover object-top"
+                    className={`w-full h-full ${speaker.imageClassName ?? "object-cover object-top"}`}
                   />
                 ) : (
                   <div className="w-full h-full bg-secondary flex items-center justify-center">
