@@ -43,12 +43,20 @@ const HeroSection = () => {
           <span className="text-lg">Ренессанс Минск Отель</span>
         </div>
 
-        <div className="mt-8 animate-fade-in-up" style={{ animationDelay: '0.75s' }}>
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.75s' }}>
           <a
             href="#registration"
             className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-10 py-4 rounded-full box-glow transition-all duration-300 hover:scale-105"
           >
             Зарегистрироваться
+          </a>
+          <a
+            href="https://t.me/PRO_sebya_medbot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-transparent border-2 border-primary text-primary hover:bg-primary/10 font-bold text-lg px-10 py-4 rounded-full transition-all duration-300 hover:scale-105"
+          >
+            Открыть в Telegram
           </a>
         </div>
       </div>
