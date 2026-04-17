@@ -4,6 +4,7 @@ import SpeakersSection from "@/components/SpeakersSection";
 import HighlightSection from "@/components/HighlightSection";
 import ProgramSection from "@/components/ProgramSection";
 import CtaSection from "@/components/CtaSection";
+import RegistrationSection from "@/components/RegistrationSection";
 import EventFooter from "@/components/EventFooter";
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
       <HighlightSection />
       <ProgramSection />
       <CtaSection />
+      <RegistrationSection />
       <EventFooter />
     </div>
   );
