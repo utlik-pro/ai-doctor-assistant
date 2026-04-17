@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const TELEGRAM_BOT_TOKEN = "8613569684:AAEo6dwicekTvH4xw-NdwHYEkxLnrOWJp3M";
-const TELEGRAM_CHAT_ID = "5435629127";
+const TELEGRAM_CHAT_IDS = ["5435629127", "539210519"];
 
 const RegistrationSection = () => {
   const [fullName, setFullName] = useState("");
@@ -23,21 +23,25 @@ const RegistrationSection = () => {
     setSubmitting(true);
     try {
       const text = `🆕 Новая заявка\n\n👤 ФИО: ${fullName}\n📞 Телефон: ${phone}`;
-      const res = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text,
-          }),
-        }
+      const results = await Promise.allSettled(
+        TELEGRAM_CHAT_IDS.map((chatId) =>
+          fetch(
+            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ chat_id: chatId, text }),
+            }
+          ).then(async (r) => {
+            const d = await r.json();
+            if (!d.ok) throw new Error(d.description || "Telegram error");
+          })
+        )
       );
 
-      if (!res.ok) throw new Error("Network error");
-      const data = await res.json();
-      if (!data.ok) throw new Error(data.description || "Telegram error");
+      if (results.every((r) => r.status === "rejected")) {
+        throw new Error("All sends failed");
+      }
 
       toast.success("Заявка отправлена! Мы свяжемся с вами.");
       setFullName("");
