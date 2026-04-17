@@ -54,7 +54,7 @@ const RegistrationSection = () => {
   };
 
   return (
-    <section className="py-20 relative">
+    <section id="registration" className="py-20 relative scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4 text-glow">

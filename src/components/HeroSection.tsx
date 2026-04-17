@@ -45,9 +45,7 @@ const HeroSection = () => {
 
         <div className="mt-8 animate-fade-in-up" style={{ animationDelay: '0.75s' }}>
           <a
-            href="https://t.me/PRO_sebya_medbot"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#registration"
             className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-10 py-4 rounded-full box-glow transition-all duration-300 hover:scale-105"
           >
             Зарегистрироваться
