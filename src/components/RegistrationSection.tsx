@@ -210,7 +210,7 @@ const RegistrationSection = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="info@smart-doctor.by"
+                placeholder="info@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
