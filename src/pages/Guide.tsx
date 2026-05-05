@@ -15,6 +15,7 @@ import {
   Lightbulb,
   ShieldAlert,
   Rocket,
+  Download,
 } from "lucide-react";
 
 type Block = {
@@ -196,10 +197,18 @@ const Guide = () => {
           <p className="text-lg text-cyan-light mb-3">
             Пошаговая инструкция к живому демо на семинаре «ИИ-ассистент врача».
           </p>
-          <p className="text-base text-muted-foreground">
+          <p className="text-base text-muted-foreground mb-8">
             Каждый блок — это этап реального приёма пациента с железодефицитной анемией. Сохраните страницу
             в закладки и применяйте инструменты с завтрашнего утра.
           </p>
+          <a
+            href="/guide.docx"
+            download
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-full box-glow transition-all duration-300 hover:scale-105"
+          >
+            <Download className="w-4 h-4" />
+            Скачать гайд (.docx)
+          </a>
         </div>
       </section>
 
