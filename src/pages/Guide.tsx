@@ -23,11 +23,13 @@ type Block = {
   title: string;
   tool: string;
   toolUrl?: string;
+  extraTools?: { label: string; url: string }[];
   goal: string;
   saves: string;
   Icon: typeof Mic;
   steps: string[];
   prompt?: { label: string; text: string };
+  extraPrompts?: { label: string; text: string }[];
   tip?: string;
 };
 
@@ -140,25 +142,37 @@ const blocks: Block[] = [
   },
   {
     num: "06",
-    title: "Контент для соцсетей в NotebookLM",
-    tool: "NotebookLM (Google) + ChatGPT",
+    title: "Контент для соцсетей: пост + обложка",
+    tool: "NotebookLM (Google)",
     toolUrl: "https://notebooklm.google.com",
-    goal: "Из клинического кейса сделать пост в Instagram / Telegram-канал за 90 секунд.",
+    extraTools: [
+      { label: "Nano Banana (Gemini 2.5 Flash Image)", url: "https://gemini.google.com" },
+      { label: "Google AI Studio", url: "https://aistudio.google.com" },
+      { label: "ChatGPT (image generation)", url: "https://chat.openai.com" },
+    ],
+    goal: "Собрать готовый пост с обложкой за 90 секунд: текст в NotebookLM, картинка в Nano Banana или ChatGPT.",
     saves: "40 минут на создание поста → 90 секунд",
     Icon: Sparkles,
     steps: [
-      "В NotebookLM откройте блокнот по нозологии (например, «Анемии»).",
-      "Используйте промпт «контент для соцсетей» — он генерирует пост в нужном тоне.",
-      "Скопируйте результат в ChatGPT и попросите адаптировать под формат вашей соцсети (Instagram, Telegram, Threads).",
-      "Сгенерируйте 3 варианта обложки в DALL-E / Midjourney по описанию.",
-      "Опубликуйте — добавьте дисклеймер «Информация носит образовательный характер, не заменяет консультацию врача».",
+      "Шаг 1 (текст). В NotebookLM откройте блокнот по нозологии (например, «Анемии») и используйте промпт «пост в соцсети» — получите текст на 1500 символов.",
+      "Шаг 2 (адаптация). Скопируйте результат в ChatGPT и попросите переписать под формат вашей соцсети (Instagram, Telegram, Threads).",
+      "Шаг 3a (обложка в Nano Banana). Откройте gemini.google.com или aistudio.google.com → выберите модель «Gemini 2.5 Flash Image» (это и есть Nano Banana). Вставьте промпт ниже и получите 4 варианта за 5 секунд. Бесплатно.",
+      "Шаг 3b (обложка в ChatGPT). На chat.openai.com (тариф Plus с GPT-4o) вставьте тот же промпт. Удобно, если уже работаете в ChatGPT — текст и картинка в одном чате.",
+      "Опубликуйте лучший вариант — добавьте дисклеймер «Информация носит образовательный характер, не заменяет консультацию врача».",
     ],
     prompt: {
-      label: "Промпт для поста в соцсети",
+      label: "Промпт для поста (NotebookLM)",
       text:
         "На основании загруженных клинических рекомендаций напиши пост для Instagram-аккаунта врача-терапевта на тему «5 признаков того, что вашему организму не хватает железа».\n\nТребования:\n— Объём: до 1500 символов.\n— Структура: цепляющий заголовок → 5 признаков с короткими пояснениями (1–2 предложения каждый) → когда идти к врачу → call-to-action (записаться на консультацию).\n— Тон: экспертный, но без назидания. Обращение на «вы».\n— В конце добавь хэштеги (5–7 штук) и дисклеймер.",
     },
-    tip: "AI-контент — ваш черновик, а не финальный текст. 30 секунд на редактуру под ваш голос превращают шаблонный пост в авторский.",
+    extraPrompts: [
+      {
+        label: "Промпт для обложки в Nano Banana / ChatGPT",
+        text:
+          "Минималистичная обложка для Instagram-поста врача на тему железодефицитной анемии у женщин.\n\nСтиль: чистый, светлый, спокойный, без пугающих и медицинских клише (никаких пробирок, шприцев, окровавленных образов).\n\nКомпозиция: на нейтральном пастельном фоне (мягкий бежевый, тёплый розовый или приглушённый шалфей) — стилизованная плоская иллюстрация в едином графическом стиле: лист шпината, половинка граната, кусочек красного мяса и одна капсула. Иконография — flat design, мягкие тени, тонкие линии.\n\nВ верхней трети — пустое место для заголовка (текст НЕ добавлять). Без надписей и логотипов на изображении.\n\nФормат: квадрат 1:1, разрешение под Instagram (1080×1080). Цветовая палитра тёплая, не более 4 оттенков.",
+      },
+    ],
+    tip: "Nano Banana бесплатна, быстрее и лучше держит фирменный стиль через несколько итераций. ChatGPT удобнее, если уже пишете там пост — всё в одном чате. Никогда не просите AI добавить русский текст на картинку: оба инструмента портят кириллицу. Заголовок добавляйте сами в Canva или Figma.",
   },
 ];
 
@@ -294,6 +308,23 @@ const Guide = () => {
                           block.tool
                         )}
                       </div>
+                      {block.extraTools && block.extraTools.length > 0 && (
+                        <div className="text-muted-foreground text-xs mt-1">
+                          + {block.extraTools.map((t, i) => (
+                            <span key={t.url}>
+                              <a
+                                href={t.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline hover:text-primary"
+                              >
+                                {t.label}
+                              </a>
+                              {i < block.extraTools!.length - 1 && " · "}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -350,6 +381,38 @@ const Guide = () => {
                       </pre>
                     </div>
                   )}
+
+                  {/* Extra prompts */}
+                  {block.extraPrompts?.map((extra, idx) => {
+                    const extraId = `prompt-${block.num}-extra-${idx}`;
+                    return (
+                      <div className="mb-5" key={extraId}>
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="text-xs uppercase tracking-wider text-muted-foreground">{extra.label}</div>
+                          <button
+                            onClick={() => copyPrompt(extraId, extra.text)}
+                            className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 transition-colors"
+                            aria-label="Скопировать промпт"
+                          >
+                            {copiedIdx === extraId ? (
+                              <>
+                                <Check className="w-3.5 h-3.5" />
+                                Скопировано
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3.5 h-3.5" />
+                                Скопировать
+                              </>
+                            )}
+                          </button>
+                        </div>
+                        <pre className="rounded-lg bg-background/60 border border-border/80 p-4 text-xs md:text-sm text-cyan-light whitespace-pre-wrap font-mono leading-relaxed">
+                          {extra.text}
+                        </pre>
+                      </div>
+                    );
+                  })}
 
                   {/* Tip */}
                   {block.tip && (
