@@ -16,7 +16,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 const TELEGRAM_BOT_TOKEN = "8613569684:AAEo6dwicekTvH4xw-NdwHYEkxLnrOWJp3M";
 const TELEGRAM_CHAT_IDS = ["5435629127", "539210519"];
 const PRIVACY_POLICY_URL = "http://pro-sebya.by/privacy-policy";
-const TOTAL_AMOUNT = "35,00 BYN";
+const DEFAULT_TOTAL_AMOUNT = "35,00 BYN";
+const DEFAULT_EVENT_NAME = "Семинар «ИИ-ассистент врача»";
+const DEFAULT_EVENT_DATE = "13 мая 2026";
 
 const SPECIALIZATIONS = [
   "Акушерство и гинекология",
@@ -99,7 +101,23 @@ const SPECIALIZATIONS = [
   "Эпидемиология",
 ];
 
-const RegistrationSection = () => {
+type RegistrationSectionProps = {
+  eventName?: string;
+  eventDate?: string;
+  totalAmount?: string;
+  title?: string;
+  subtitle?: string;
+  submitLabel?: string;
+};
+
+const RegistrationSection = ({
+  eventName = DEFAULT_EVENT_NAME,
+  eventDate = DEFAULT_EVENT_DATE,
+  totalAmount = DEFAULT_TOTAL_AMOUNT,
+  title = "Регистрация на семинар",
+  subtitle = "Доступ к обучающим материалам будет открыт только для медицинских и фармацевтических работников",
+  submitLabel = "Записаться",
+}: RegistrationSectionProps = {}) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -140,6 +158,8 @@ const RegistrationSection = () => {
     try {
       const text =
         `🆕 Новая заявка\n\n` +
+        `📌 Мероприятие: ${eventName}\n` +
+        `📅 Дата: ${eventDate}\n\n` +
         `👤 ФИО: ${lastName} ${firstName} ${middleName}\n` +
         `📧 Email: ${email}\n` +
         `📞 Телефон: ${phone}\n` +
@@ -148,7 +168,7 @@ const RegistrationSection = () => {
         `🏢 Место работы: ${workplace}\n` +
         `🩺 Амбулаторный приём: ${ambulatory}\n` +
         `🏙 Город: ${city}\n` +
-        `💰 Сумма: ${TOTAL_AMOUNT}`;
+        `💰 Сумма: ${totalAmount}`;
 
       const results = await Promise.allSettled(
         TELEGRAM_CHAT_IDS.map((chatId) =>
@@ -194,11 +214,10 @@ const RegistrationSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4 text-glow">
-            Регистрация на семинар
+            {title}
           </h2>
           <p className="text-muted-foreground text-center mb-8 uppercase text-sm tracking-wide">
-            Доступ к обучающим материалам будет открыт только для медицинских
-            и фармацевтических работников
+            {subtitle}
           </p>
 
           <form
@@ -373,7 +392,7 @@ const RegistrationSection = () => {
             <div className="flex items-center justify-end pt-2">
               <p className="text-foreground text-lg">
                 Итоговая сумма:{" "}
-                <span className="font-bold text-primary">{TOTAL_AMOUNT}</span>
+                <span className="font-bold text-primary">{totalAmount}</span>
               </p>
             </div>
 
@@ -383,7 +402,7 @@ const RegistrationSection = () => {
               disabled={submitting}
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full box-glow transition-all duration-300 hover:scale-105 mt-2"
             >
-              {submitting ? "Отправка..." : "Записаться"}
+              {submitting ? "Отправка..." : submitLabel}
             </Button>
           </form>
         </div>
