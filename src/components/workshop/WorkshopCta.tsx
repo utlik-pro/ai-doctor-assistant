@@ -7,7 +7,7 @@ const WorkshopCta = () => {
         <div className="max-w-lg mx-auto">
           <p className="text-4xl md:text-5xl font-bold text-foreground mb-2">150 BYN</p>
           <p className="text-muted-foreground text-lg mb-6">
-            Группа до 20 человек · количество мест ограничено
+            Группа до 35 человек · количество мест ограничено
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-cyan-light mb-8">
