@@ -56,7 +56,7 @@ const WorkshopHero = () => {
           style={{ animationDelay: "0.6s" }}
         >
           <MapPin className="w-5 h-5 text-primary" />
-          <span className="text-lg">Willing Hotel · ул. Ленина, 50, Минск</span>
+          <span className="text-lg">Минск · пр. Победителей, 7А · 19 этаж, комн. 59</span>
         </div>
 
         <div

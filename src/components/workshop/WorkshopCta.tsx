@@ -17,7 +17,7 @@ const WorkshopCta = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-primary" />
-              <span>Willing Hotel, ул. Ленина, 50, Минск</span>
+              <span>Минск, пр. Победителей, 7А, 19 этаж, комн. 59</span>
             </div>
           </div>
 
